@@ -1,3 +1,6 @@
 spring:
   application:
     name: fraud
+  grpc:
+    server:
+      port: 9090

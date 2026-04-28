@@ -1,7 +1,8 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.5'
+	id 'org.springframework.boot' version '4.0.6'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.google.protobuf' version '0.9.5'
 }
 
 group = 'com.github.fabriciolfj'
@@ -17,13 +18,46 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springGrpcVersion', "1.0.3")
+}
+
+
 dependencies {
+	implementation 'io.grpc:grpc-services'
+	implementation 'org.springframework.grpc:spring-grpc-server-spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'ai.djl:api:0.33.0'
+	implementation 'ai.djl.onnxruntime:onnxruntime-engine:0.33.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.grpc:spring-grpc-dependencies:${springGrpcVersion}"
+	}
+}
+
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+protobuf {
+	protoc {
+		artifact = 'com.google.protobuf:protoc'
+	}
+	plugins {
+		grpc {
+			artifact = 'io.grpc:protoc-gen-grpc-java'
+		}
+	}
+	generateProtoTasks {
+		all()*.plugins {
+			grpc {
+				option '@generated=omit'
+			}
+		}
+	}
 }
