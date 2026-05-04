@@ -9,9 +9,6 @@ public interface ImageAnalyzer {
     @SystemMessage("""
             You are an expert software engineer.
             Analyze the provided screenshot and identify:
-            - The error or issue visible
-            - The category: PERSISTENCE, UI, EVENT or GENERIC
-            - A short description of the problem
             """)
     @UserMessage(value = {
             "Analyze this screenshot and classify the programming issue.",

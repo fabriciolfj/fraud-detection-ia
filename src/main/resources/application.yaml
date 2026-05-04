@@ -4,3 +4,10 @@ spring:
   grpc:
     server:
       port: 9090
+
+langchain4j:
+  anthropic:
+    # --- ChatModel (síncrono) ---
+    chat-model:
+      api-key: ${ANTHROPIC_API_KEY}               # variável de ambiente
+      model-name: claude-sonnet-4-5-20250929      # modelo atual
