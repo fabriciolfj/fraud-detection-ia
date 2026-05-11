@@ -7,7 +7,7 @@ spring:
 
 langchain4j:
   anthropic:
-    # --- ChatModel (síncrono) ---
+    # --- ChatModel (síncrono) ---z
     chat-model:
       api-key: ${ANTHROPIC_API_KEY}               # variável de ambiente
       model-name: claude-sonnet-4-5-20250929      # modelo atual
