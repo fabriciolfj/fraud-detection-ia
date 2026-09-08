@@ -83,3 +83,4 @@ public class ClassificationOllamaEmbeddingTest {
         IO.println(classifier.classifyWithScores("nao quero esperar"));
     }
 }
+
